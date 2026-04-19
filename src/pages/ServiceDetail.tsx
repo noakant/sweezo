@@ -90,26 +90,56 @@ export default function ServiceDetail() {
                </ul>
             </div>
 
-            <div className="border border-black/10 rounded-[2rem] p-10 bg-white">
-              <h3 className="font-display text-2xl font-bold mb-8">Méthodologie</h3>
-              <div className="space-y-8 relative">
-                <div className="absolute left-6 top-6 bottom-4 w-px bg-black/10"></div>
-                {service.process?.map((step, i) => (
-                  <div key={i} className="relative z-10 pl-16">
-                    <div className="absolute left-2.5 top-0 w-7 h-7 bg-[#FFFCF7] border border-black/20 rounded-full flex items-center justify-center font-mono text-xs font-bold text-black shadow-sm">
-                      {i + 1}
-                    </div>
-                    <h4 className="font-bold text-lg mb-1">{step.step}</h4>
-                    <p className="text-black/60 font-sans">{step.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </motion.div>
         </div>
 
-        <div className="text-center p-16 border border-black/10 rounded-[3rem] bg-white/50 backdrop-blur w-full">
+        {/* Timeline Méthodologie Pleine Page */}
+        <div className="mt-16 md:mt-32 w-full mb-32">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="font-display text-4xl md:text-6xl font-bold mb-16 md:mb-24 text-center tracking-tight"
+          >
+            Notre méthodologie
+          </motion.h2>
+          
+          <div className="relative max-w-5xl mx-auto">
+            {/* Desktop Timeline line */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-black/10 -translate-x-1/2" />
+            
+            {/* Mobile timeline line */}
+            <div className="block md:hidden absolute left-8 top-0 bottom-0 w-px bg-black/10" />
+
+            <div className="space-y-12 md:space-y-24">
+              {service.process?.map((step, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.7, delay: 0.1 }}
+                  className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                >
+                   {/* Center Node */}
+                   <div className="absolute left-8 md:left-1/2 w-12 h-12 md:w-16 md:h-16 bg-[#FFFCF7] border-2 border-black rounded-full flex items-center justify-center font-display font-bold text-xl md:text-2xl text-black shadow-none -translate-x-1/2 z-10 transition-transform hover:scale-110 duration-300">
+                     {i + 1}
+                   </div>
+                   
+                   {/* Content Block */}
+                   <div className={`w-full md:w-1/2 pl-20 md:pl-0 ${i % 2 === 0 ? 'md:pr-16 text-left md:text-right' : 'md:pl-16 text-left'}`}>
+                      <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-black/5 hover:border-black/20 transition-colors">
+                        <h4 className="font-display font-bold text-2xl md:text-3xl mb-4">{step.step}</h4>
+                        <p className="text-black/60 font-sans text-lg md:text-xl leading-relaxed">{step.desc}</p>
+                      </div>
+                   </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center p-10 md:p-16 border border-black/10 rounded-[3rem] bg-white/50 backdrop-blur w-full">
           <h2 className="font-display text-3xl font-bold mb-6">Prêt à lancer ce projet ?</h2>
           <p className="font-sans text-lg text-black/60 mb-10 max-w-xl mx-auto">
             Contactez-nous pour en discuter et obtenir une estimation personnalisée.

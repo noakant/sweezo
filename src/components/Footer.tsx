@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-2">
             <div className="mb-6 h-12">
-               <img src="/logo.png" alt="Sweezo" className="h-full object-contain filter invert" 
+               <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain filter invert" 
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                       const fallback = document.getElementById('footer-text-fallback');

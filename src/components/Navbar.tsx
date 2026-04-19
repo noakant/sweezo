@@ -20,7 +20,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center relative group">
             {/* Try loading image logo.png from public folder. Fallback to CSS logo if fails. */}
             <div className="h-10 transition-transform duration-300 group-hover:scale-105">
-               <img src="/logo.png" alt="Sweezo Logo" className="h-full object-contain" 
+               <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain" 
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                       const fallback = document.getElementById('text-fallback');
