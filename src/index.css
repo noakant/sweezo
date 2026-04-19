@@ -10,7 +10,8 @@
 
 .opart-connected {
   font-family: var(--font-opart);
-  letter-spacing: -0.21em; /* Extrêmement négatif pour fusionner les lignes */
+  font-weight: 400 !important; /* Empêche le faux-gras (faux-bold) qui détruit les lignes de la police */
+  letter-spacing: -0.08em; /* Ajustement optimal pour lier les lettres sans écraser les traits */
   word-spacing: 0.5em; /* Force un vrai espace entre chaque mot */
   text-transform: lowercase; /* Force the lower case natively */
   display: inline-block;
