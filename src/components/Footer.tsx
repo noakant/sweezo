@@ -16,8 +16,8 @@ export default function Footer() {
                       if(fallback) fallback.style.display = 'block';
                     }} 
                />
-               <h2 id="footer-text-fallback" className="font-display text-5xl md:text-7xl font-bold tracking-tight leading-none hidden">
-                 SWEEZO
+               <h2 id="footer-text-fallback" className="opart-connected text-6xl md:text-8xl leading-none hidden pt-2">
+                 sweezo
                </h2>
             </div>
             <p className="text-[#FFFCF7]/70 font-sans max-w-sm text-lg leading-relaxed">

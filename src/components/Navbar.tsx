@@ -17,9 +17,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
-          <Link to="/" className="flex flex-col relative group">
+          <Link to="/" className="flex items-center relative group">
             {/* Try loading image logo.png from public folder. Fallback to CSS logo if fails. */}
-            <div className="h-10">
+            <div className="h-10 transition-transform duration-300 group-hover:scale-105">
                <img src="/logo.png" alt="Sweezo Logo" className="h-full object-contain" 
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
@@ -27,12 +27,10 @@ export default function Navbar() {
                       if(fallback) fallback.style.display = 'block';
                     }} 
                />
-               <span id="text-fallback" className="font-display font-bold text-3xl tracking-tight uppercase hidden">
-                 Sweezo
+               <span id="text-fallback" className="opart-connected text-5xl hidden text-black pt-2">
+                 sweezo
                </span>
             </div>
-            <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-black origin-left transform scale-x-0 transition-transform group-hover:scale-x-100" />
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-black origin-left transform scale-x-0 transition-transform delay-75 group-hover:scale-x-100" />
           </Link>
 
           {/* Desktop links */}
@@ -41,22 +39,30 @@ export default function Navbar() {
               <NavLink
                 key={link.to}
                 to={link.to}
-                className={({ isActive }) =>
-                  `font-medium text-sm uppercase tracking-widest transition-colors hover:text-black/60 relative ${
-                    isActive ? 'text-black' : 'text-black/60'
-                  }`
-                }
+                className="relative group py-2"
               >
                 {({ isActive }) => (
-                  <>
-                    {link.label}
+                  <div className="relative overflow-hidden">
+                    <span 
+                      className={`block transition-transform duration-300 group-hover:-translate-y-full font-medium text-sm uppercase tracking-widest ${
+                        isActive ? 'text-black' : 'text-black/60'
+                      }`}
+                    >
+                      {link.label}
+                    </span>
+                    <span 
+                      className="absolute inset-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-black font-medium text-sm uppercase tracking-widest"
+                      aria-hidden="true"
+                    >
+                      {link.label}
+                    </span>
                     {isActive && (
                       <motion.div
                         layoutId="nav-indicator"
-                        className="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-black"
                       />
                     )}
-                  </>
+                  </div>
                 )}
               </NavLink>
             ))}

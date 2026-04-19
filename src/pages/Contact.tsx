@@ -1,7 +1,10 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Contact() {
+  const [formType, setFormType] = useState<'project' | 'talent'>('project');
+
   return (
     <div className="w-full pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,55 +23,130 @@ export default function Contact() {
             <span className="text-outline">ensemble.</span>
           </h1>
           <p className="text-2xl font-sans text-black/70 leading-relaxed max-w-2xl">
-            Prêt à transformer vos idées en réalité ? Laissez-nous un message et nous vous recontacterons très vite.
+            Prêt à transformer vos idées en réalité ou à nous faire découvrir vos talents ? Laissez-nous un message.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          {/* Contact Form */}
+          {/* Dynamic Forms Area */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-black/10 shadow-sm"
+            className="bg-white rounded-[2.5rem] overflow-hidden border border-black/10 shadow-sm flex flex-col"
           >
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider">Nom complet</label>
-                  <input type="text" id="name" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="Jean Dupont" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="company" className="text-sm font-bold uppercase tracking-wider">Entreprise</label>
-                  <input type="text" id="company" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="Votre société" />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-bold uppercase tracking-wider">Email</label>
-                <input type="email" id="email" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="jean@exemple.com" />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-bold uppercase tracking-wider">Sujet du projet</label>
-                <select id="subject" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors appearance-none rounded-none">
-                  <option>Développement Web / App</option>
-                  <option>Intelligence Artificielle</option>
-                  <option>Design UX/UI</option>
-                  <option>Automatisation</option>
-                  <option>Autre domaine</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider">Message</label>
-                <textarea id="message" rows={4} className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors resize-none" placeholder="Parlez-nous de votre projet..."></textarea>
-              </div>
-
-              <button className="w-full bg-black text-[#FFFCF7] py-4 rounded-full text-lg uppercase tracking-wider font-semibold hover:bg-black/80 transition-all mt-4">
-                Envoyer la demande
+            {/* Form Toggle Tabs */}
+            <div className="flex border-b border-black/10 bg-[#FFFCF7]/50">
+              <button 
+                onClick={() => setFormType('project')}
+                className={`flex-1 py-6 font-bold uppercase tracking-widest text-sm transition-colors ${formType === 'project' ? 'bg-white text-black' : 'text-black/40 hover:text-black/70'}`}
+              >
+                Parler d'un projet
               </button>
-            </form>
+              <button 
+                onClick={() => setFormType('talent')}
+                className={`flex-1 py-6 font-bold uppercase tracking-widest text-sm transition-colors border-l border-black/10 ${formType === 'talent' ? 'bg-white text-black' : 'text-black/40 hover:text-black/70'}`}
+              >
+                Je suis un talent
+              </button>
+            </div>
+
+            <div className="p-8 md:p-12 relative min-h-[500px]">
+              <AnimatePresence mode="wait">
+                {formType === 'project' ? (
+                  <motion.form 
+                    key="project-form"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="space-y-8" 
+                    onSubmit={(e) => e.preventDefault()}
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider">Nom complet</label>
+                        <input type="text" id="name" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="Jean Dupont" />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="company" className="text-sm font-bold uppercase tracking-wider">Entreprise</label>
+                        <input type="text" id="company" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="Votre société" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-bold uppercase tracking-wider">Email</label>
+                      <input type="email" id="email" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="jean@exemple.com" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="subject" className="text-sm font-bold uppercase tracking-wider">Sujet du projet</label>
+                      <select id="subject" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors appearance-none rounded-none">
+                        <option>Développement Web / App</option>
+                        <option>Intelligence Artificielle</option>
+                        <option>Design UX/UI</option>
+                        <option>Automatisation</option>
+                        <option>Autre domaine</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider">Message</label>
+                      <textarea id="message" rows={4} className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors resize-none" placeholder="Parlez-nous de votre projet..."></textarea>
+                    </div>
+
+                    <button className="w-full bg-black text-[#FFFCF7] py-4 rounded-full text-lg uppercase tracking-wider font-semibold hover:bg-black/80 transition-all mt-4">
+                      Envoyer la demande
+                    </button>
+                  </motion.form>
+                ) : (
+                  <motion.form 
+                    key="talent-form"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="space-y-8" 
+                    onSubmit={(e) => e.preventDefault()}
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      <div className="space-y-2">
+                        <label htmlFor="talent-name" className="text-sm font-bold uppercase tracking-wider">Nom complet</label>
+                        <input type="text" id="talent-name" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="Jane Doe" required />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="talent-email" className="text-sm font-bold uppercase tracking-wider">Email</label>
+                        <input type="email" id="talent-email" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="jane@exemple.com" required />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="talent-expertise" className="text-sm font-bold uppercase tracking-wider">Expertise Principale</label>
+                      <select id="talent-expertise" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors appearance-none rounded-none" required>
+                        <option value="" disabled selected>Sélectionnez votre domaine</option>
+                        <option>Développeur(se) Web / App</option>
+                        <option>Expert(e) I.A. / Data</option>
+                        <option>Designer UX/UI</option>
+                        <option>Expert(e) Automatisation / No-code</option>
+                        <option>Product Manager / Owner</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="talent-portfolio" className="text-sm font-bold uppercase tracking-wider">Lien de Portfolio / GitHub / LinkedIn</label>
+                      <input type="url" id="talent-portfolio" className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors" placeholder="https://" required />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="talent-message" className="text-sm font-bold uppercase tracking-wider">Pourquoi Sweezo ?</label>
+                      <textarea id="talent-message" rows={4} className="w-full bg-transparent border-b border-black/20 pb-2 focus:border-black focus:outline-none transition-colors resize-none" placeholder="Quelle est votre super-puissance et pourquoi voulez-vous nous rejoindre ?" required></textarea>
+                    </div>
+
+                    <button className="w-full bg-black text-[#FFFCF7] py-4 rounded-full text-lg uppercase tracking-wider font-semibold hover:bg-black/80 transition-all mt-4">
+                      Soumettre mon profil
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
           {/* Contact Info */}
@@ -111,16 +189,6 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="p-8 rounded-[2rem] bg-black text-[#FFFCF7] relative overflow-hidden">
-              <div className="absolute inset-0 bg-pattern-lines opacity-10 mix-blend-overlay"></div>
-              <div className="relative z-10">
-                <h4 className="font-display text-2xl font-bold mb-2">Rejoignez l'équipe</h4>
-                <p className="opacity-70 mb-4 font-sans">Nous sommes toujours à la recherche de talents passionnés.</p>
-                <a href="mailto:jobs@sweezo.com" className="uppercase text-sm font-bold tracking-widest underline underline-offset-4 hover:opacity-70 transition-opacity">
-                  Voir nos offres
-                </a>
-              </div>
-            </div>
           </motion.div>
         </div>
 

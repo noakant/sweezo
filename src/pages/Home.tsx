@@ -23,7 +23,7 @@ export default function Home() {
             
             <h1 className="font-display font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.85] tracking-tighter mb-8 group">
               <span className="block">Nous créons</span>
-              <span className="block text-outline opacity-80 transition-opacity duration-300 group-hover:opacity-100">la valeur</span>
+              <span className="block opart-connected pt-4 py-2 opacity-90 transition-opacity duration-300 group-hover:opacity-100">la valeur</span>
               <span className="block">de demain.</span>
             </h1>
             
@@ -61,11 +61,11 @@ export default function Home() {
              <div key={i} className="flex gap-16 items-center">
               <span className="font-display text-4xl uppercase tracking-tighter font-bold">Développement Web</span>
               <span className="w-3 h-3 bg-black rounded-full"></span>
-              <span className="font-display text-4xl text-outline tracking-tighter font-bold uppercase">Intelligence Artificielle</span>
+              <span className="opart-connected text-4xl pt-2">intelligence artificielle</span>
               <span className="w-3 h-3 bg-black rounded-full"></span>
               <span className="font-display text-4xl uppercase tracking-tighter font-bold">Design UX/UI</span>
               <span className="w-3 h-3 bg-black rounded-full"></span>
-              <span className="font-display text-4xl text-outline tracking-tighter font-bold uppercase">Automatisation</span>
+              <span className="opart-connected text-4xl pt-2">automatisation</span>
               <span className="w-3 h-3 bg-black rounded-full"></span>
              </div>
           ))}

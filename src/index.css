@@ -1,10 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-opart: "Monoton", display;
   --color-brand-bg: #FFFCF7;
+}
+
+.opart-connected {
+  font-family: var(--font-opart);
+  letter-spacing: -0.21em; /* Extrêmement négatif pour fusionner les lignes */
+  word-spacing: 0.5em; /* Force un vrai espace entre chaque mot */
+  text-transform: lowercase; /* Force the lower case natively */
+  display: inline-block;
+  padding-right: 0.1em; /* Prévient la coupure de la dernière lettre */
+  margin-left: -0.1em;
 }
 
 body {

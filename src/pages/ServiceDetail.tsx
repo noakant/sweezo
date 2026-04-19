@@ -47,26 +47,65 @@ export default function ServiceDetail() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="font-display text-3xl font-bold mb-6 tracking-tight">Notre approche</h2>
-            <p className="text-lg text-black/70 font-sans leading-relaxed">
+            <p className="text-lg text-black/70 font-sans leading-relaxed mb-12">
               {service.fullDescription}
             </p>
+
+            <h3 className="font-display text-2xl font-bold mb-6">Technologies Utilisées</h3>
+            <div className="flex flex-wrap gap-3 mb-12">
+              {service.techStack?.map((tech, i) => (
+                <span key={i} className="px-4 py-2 border border-black/20 rounded-full text-sm font-bold uppercase tracking-wider">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <h3 className="font-display text-2xl font-bold mb-6">Livrables inclus</h3>
+            <ul className="space-y-4">
+               {service.deliverables?.map((item, i) => (
+                 <li key={i} className="flex gap-4 items-center">
+                   <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+                   <span className="font-sans font-medium">{item}</span>
+                 </li>
+               ))}
+             </ul>
+
           </motion.div>
           
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-black text-[#FFFCF7] rounded-[2rem] p-8"
+            className="flex flex-col gap-8"
           >
-             <h3 className="font-display text-2xl font-bold mb-8">Les avantages clés</h3>
-             <ul className="space-y-4">
-               {service.benefits.map((benefit, i) => (
-                 <li key={i} className="flex gap-4 items-start">
-                   <div className="mt-1 bg-[#FFFCF7]/10 p-1 rounded-full"><Check className="w-4 h-4" /></div>
-                   <span className="font-sans opacity-90">{benefit}</span>
-                 </li>
-               ))}
-             </ul>
+            <div className="bg-black text-[#FFFCF7] rounded-[2rem] p-10">
+               <h3 className="font-display text-2xl font-bold mb-8">Les avantages clés</h3>
+               <ul className="space-y-6">
+                 {service.benefits.map((benefit, i) => (
+                   <li key={i} className="flex gap-4 items-start">
+                     <div className="mt-1 bg-[#FFFCF7]/10 p-1 rounded-full shrink-0"><Check className="w-4 h-4" /></div>
+                     <span className="font-sans opacity-90 text-lg">{benefit}</span>
+                   </li>
+                 ))}
+               </ul>
+            </div>
+
+            <div className="border border-black/10 rounded-[2rem] p-10 bg-white">
+              <h3 className="font-display text-2xl font-bold mb-8">Méthodologie</h3>
+              <div className="space-y-8 relative">
+                <div className="absolute left-6 top-6 bottom-4 w-px bg-black/10"></div>
+                {service.process?.map((step, i) => (
+                  <div key={i} className="relative z-10 pl-16">
+                    <div className="absolute left-2.5 top-0 w-7 h-7 bg-[#FFFCF7] border border-black/20 rounded-full flex items-center justify-center font-mono text-xs font-bold text-black shadow-sm">
+                      {i + 1}
+                    </div>
+                    <h4 className="font-bold text-lg mb-1">{step.step}</h4>
+                    <p className="text-black/60 font-sans">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </motion.div>
         </div>
 
