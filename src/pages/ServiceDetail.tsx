@@ -1,0 +1,89 @@
+import { useParams, Link } from 'react-router-dom';
+import { servicesData } from '../data/services';
+import { motion } from 'motion/react';
+import { ArrowLeft, Check, ArrowRight } from 'lucide-react';
+
+export default function ServiceDetail() {
+  const { id } = useParams();
+  const service = servicesData.find(s => s.id === id);
+
+  if (!service) {
+    return (
+      <div className="pt-32 pb-20 text-center font-display text-4xl">
+        Service introuvable.
+        <Link to="/services" className="block mt-8 text-lg underline">Retour aux prestations</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full pt-24 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <Link to="/services" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest mb-16 hover:opacity-70 transition-opacity">
+          <ArrowLeft className="w-4 h-4" /> Retour aux prestations
+        </Link>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-4xl mb-24"
+        >
+          <span className="font-mono text-sm uppercase tracking-widest text-black/50 block mb-6">
+            {service.category}
+          </span>
+          <h1 className="font-display font-bold text-5xl md:text-7xl tracking-tighter leading-none mb-10">
+            {service.title}
+          </h1>
+          <p className="text-2xl font-sans text-black/70 leading-relaxed max-w-2xl bg-pattern-lines p-4 border border-black/5 rounded-2xl">
+            {service.desc}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <h2 className="font-display text-3xl font-bold mb-6 tracking-tight">Notre approche</h2>
+            <p className="text-lg text-black/70 font-sans leading-relaxed">
+              {service.fullDescription}
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-black text-[#FFFCF7] rounded-[2rem] p-8"
+          >
+             <h3 className="font-display text-2xl font-bold mb-8">Les avantages clés</h3>
+             <ul className="space-y-4">
+               {service.benefits.map((benefit, i) => (
+                 <li key={i} className="flex gap-4 items-start">
+                   <div className="mt-1 bg-[#FFFCF7]/10 p-1 rounded-full"><Check className="w-4 h-4" /></div>
+                   <span className="font-sans opacity-90">{benefit}</span>
+                 </li>
+               ))}
+             </ul>
+          </motion.div>
+        </div>
+
+        <div className="text-center p-16 border border-black/10 rounded-[3rem] bg-white/50 backdrop-blur w-full">
+          <h2 className="font-display text-3xl font-bold mb-6">Prêt à lancer ce projet ?</h2>
+          <p className="font-sans text-lg text-black/60 mb-10 max-w-xl mx-auto">
+            Contactez-nous pour en discuter et obtenir une estimation personnalisée.
+          </p>
+          <Link 
+            to="/demarrer"
+            className="inline-flex bg-black text-[#FFFCF7] px-8 py-4 rounded-full text-lg uppercase tracking-wider font-semibold hover:bg-black/80 transition-all items-center gap-2"
+          >
+            Démarrer le projet <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+
+      </div>
+    </div>
+  );
+}
