@@ -9,16 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-2">
             <div className="mb-6 h-12">
-               <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain filter invert" 
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                      const fallback = document.getElementById('footer-text-fallback');
-                      if(fallback) fallback.style.display = 'block';
-                    }} 
-               />
-               <h2 id="footer-text-fallback" className="opart-connected text-6xl md:text-8xl leading-none hidden pt-2">
-                 sweezo
-               </h2>
+               <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain filter invert" />
             </div>
             <p className="text-[#FFFCF7]/70 font-sans max-w-sm text-lg leading-relaxed">
               Créateurs de projets à valeur ajoutée en informatique, IA, et design depuis 2022.

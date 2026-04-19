@@ -131,7 +131,8 @@ export default function About() {
              <div className="w-full max-w-md aspect-square rounded-full border border-white/20 flex flex-col items-center justify-center text-white/50 relative">
                <div className="absolute w-[150%] h-[1px] bg-white/20 rotate-45"></div>
                <div className="absolute w-[150%] h-[1px] bg-white/20 -rotate-45"></div>
-               <span className="opart-connected text-5xl text-white z-10 bg-black px-4 pt-4 leading-none">sweezo</span>
+               {/* Logo abstrait vidéo */}
+               <video src="/logo.mp4" autoPlay loop muted playsInline className="w-24 h-24 object-contain filter invert mix-blend-screen z-10" />
              </div>
           </div>
         </motion.div>

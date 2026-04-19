@@ -17,20 +17,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center relative group">
-            {/* Try loading image logo.png from public folder. Fallback to CSS logo if fails. */}
-            <div className="h-10 transition-transform duration-300 group-hover:scale-105">
-               <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain" 
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                      const fallback = document.getElementById('text-fallback');
-                      if(fallback) fallback.style.display = 'block';
-                    }} 
-               />
-               <span id="text-fallback" className="opart-connected text-5xl hidden text-black pt-2">
-                 sweezo
-               </span>
-            </div>
+          <Link to="/" className="flex items-center group h-10">
+            <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop links */}
