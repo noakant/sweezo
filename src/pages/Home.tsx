@@ -1,10 +1,15 @@
 import { motion } from 'motion/react';
 import { ArrowUpRight, Code, Cpu, LineChart, Cpu as Bot } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function Home() {
   return (
     <div className="w-full">
+      <SEO 
+        title="Accueil" 
+        description="Sweezo transforme vos idées en solutions numériques expertes : Web, Applications, Intelligence Artificielle et Automatisation." 
+      />
       {/* Hero Section */}
       <section className="relative pt-24 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-pattern-lines opacity-40 pointer-events-none"></div>

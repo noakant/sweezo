@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center group h-10">
-            <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+            <video src="/logo.mp4" autoPlay loop muted playsInline className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" style={{ mixBlendMode: 'multiply' }} />
           </Link>
 
           {/* Desktop links */}
@@ -54,6 +54,12 @@ export default function Navbar() {
                 )}
               </NavLink>
             ))}
+            <Link
+              to="/diagnostic"
+              className="ml-4 font-medium text-sm uppercase tracking-widest text-black/60 hover:text-black transition-colors"
+            >
+              Diagnostic
+            </Link>
             <Link
               to="/demarrer"
               className="ml-4 border border-black rounded-full px-6 py-2.5 text-sm uppercase tracking-wider font-medium hover:bg-black hover:text-[#FFFCF7] transition-all flex items-center gap-2"

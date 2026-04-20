@@ -1,12 +1,17 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [formType, setFormType] = useState<'project' | 'talent'>('project');
 
   return (
     <div className="w-full pt-24 pb-20">
+      <SEO 
+        title="Démarrer un projet" 
+        description="Prêt à transformer vos idées en réalité ou à nous faire découvrir vos talents ? Laissez-nous un message." 
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

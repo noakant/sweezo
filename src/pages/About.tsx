@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import SEO from '../components/SEO';
 
 const faqs = [
   {
@@ -65,6 +66,10 @@ export default function About() {
 
   return (
     <div className="w-full pt-24 pb-20">
+      <SEO 
+        title="À propos" 
+        description="Découvrez l'histoire de Sweezo, de Mtbadges à aujourd'hui, et notre vision pour vos projets digitaux." 
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

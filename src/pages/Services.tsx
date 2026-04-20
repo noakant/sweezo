@@ -2,10 +2,15 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { servicesData as services } from '../data/services';
+import SEO from '../components/SEO';
 
 export default function Services() {
   return (
     <div className="w-full pt-24 pb-20">
+      <SEO 
+        title="Prestations" 
+        description="De la feuille vierge au produit final, découvrez toutes les prestations de Sweezo : Web, Application, IA, UX/UI, Automatisation." 
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

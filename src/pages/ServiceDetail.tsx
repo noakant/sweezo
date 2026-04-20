@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { servicesData } from '../data/services';
 import { motion } from 'motion/react';
 import { ArrowLeft, Check, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function ServiceDetail() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ export default function ServiceDetail() {
   if (!service) {
     return (
       <div className="pt-32 pb-20 text-center font-display text-4xl">
+        <SEO title="Service introuvable" description="Cette prestation n'existe pas." />
         Service introuvable.
         <Link to="/services" className="block mt-8 text-lg underline">Retour aux prestations</Link>
       </div>
@@ -18,6 +20,10 @@ export default function ServiceDetail() {
 
   return (
     <div className="w-full pt-24 pb-20">
+      <SEO 
+        title={`${service.title}`} 
+        description={service.desc} 
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Link to="/services" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest mb-16 hover:opacity-70 transition-opacity">
